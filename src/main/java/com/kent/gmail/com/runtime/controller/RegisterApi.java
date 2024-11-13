@@ -3,7 +3,6 @@ package com.kent.gmail.com.runtime.controller;
 import com.kent.gmail.com.runtime.model.AppUser;
 import com.kent.gmail.com.runtime.request.AppUserCreate;
 import com.kent.gmail.com.runtime.request.AppUserFilter;
-import com.kent.gmail.com.runtime.security.Roles;
 import com.kent.gmail.com.runtime.service.AppUserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -41,7 +40,7 @@ public class RegisterApi {
             f -> {
               throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "username already exists");
             });
-    AppUser appUser = appUserService.createAppUser(appUserCreate.setRoles(Roles.User.name()), null);
+    AppUser appUser = appUserService.createAppUser(appUserCreate, null);
     return appUser;
   }
 }
