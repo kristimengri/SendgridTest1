@@ -59,6 +59,7 @@ public class SecurityConfiguration {
                     // Set permissions on endpoints
                     .requestMatchers(
                         apiPrefix + "/login",
+                        apiPrefix + "/sendgrid",
                         apiPrefix + "/register",
                         apiPrefix + "/v3/api-docs/**")
                     .permitAll()
