@@ -26,7 +26,7 @@ public class Sendgridflow {
         new POSTMailSendRequestBody()
             .setContent("HI")
             .setSubject("HI")
-            .setPersonalizations("dejolo9154@operades.com"));
+            .setPersonalizations("cecag48998@operades.com"));
 
     return "String";
   }
