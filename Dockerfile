@@ -4,6 +4,9 @@ ARG ECLIPSE_TEMURIN_VERSION=21.0.3_9-jre-alpine
 
 #build image
 FROM maven:$MAVEN_VERSION as build
+WORKDIR /app/cache
+COPY  common-pom.xml pom.xml
+RUN mvn dependency:resolve-plugins dependency:go-offline -B
 WORKDIR /app/server
 COPY  . .
 RUN mvn package -DskipTests

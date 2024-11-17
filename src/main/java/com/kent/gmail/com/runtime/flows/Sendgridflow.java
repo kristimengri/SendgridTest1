@@ -1,21 +1,17 @@
 package com.kent.gmail.com.runtime.flows;
 
+import com.kent.gmail.com.runtime.model.SendgridResult;
+import com.kent.gmail.com.runtime.request.EmailReques;
+import com.kent.gmail.com.runtime.response.SendGridAPIResponse;
 import com.kent.gmail.com.runtime.security.UserSecurityContext;
 import com.kent.gmail.com.runtime.sendgrid.v3.SendGridAPI;
 import com.kent.gmail.com.runtime.sendgrid.v3.request.POSTMailSendRequestBody;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
-@EnableScheduling
 public class Sendgridflow {
-  @Scheduled(fixedDelay = 15000)
-  public void runSchedule() {
-    run(null);
-  }
 
-  public String run(UserSecurityContext securityContext) {
+  public SendGridAPIResponse run(EmailReques body, UserSecurityContext securityContext) {
 
     SendGridAPI sendgridapi =
         new SendGridAPI()
@@ -28,6 +24,8 @@ public class Sendgridflow {
             .setSubject("HI")
             .setPersonalizations("cecag48998@operades.com"));
 
-    return "String";
+    return new SendGridAPIResponse()
+        .setResult(SendgridResult.success)
+        .setMessage("this is a message");
   }
 }
