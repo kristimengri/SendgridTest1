@@ -20,9 +20,9 @@ public class Sendgridflow {
 
     sendgridapi.pOST_mailsend(
         new POSTMailSendRequestBody()
-            .setContent("HI")
-            .setSubject("HI")
-            .setPersonalizations("cecag48998@operades.com"));
+            .setContent(body.getMessage())
+            .setSubject(body.getSubject())
+            .setPersonalizations(body.getEmail()));
 
     return new SendGridAPIResponse()
         .setResult(SendgridResult.success)
